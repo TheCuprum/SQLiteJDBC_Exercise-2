@@ -1,4 +1,4 @@
-package db;
+package priv.db;
 
 // STUBBED FILE
 import java.sql.*;

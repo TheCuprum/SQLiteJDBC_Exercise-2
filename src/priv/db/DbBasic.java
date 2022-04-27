@@ -1,4 +1,4 @@
-package db;
+package priv.db;
 
 import java.sql.*;
 import java.io.File;

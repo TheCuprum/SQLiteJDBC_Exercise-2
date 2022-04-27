@@ -1,2 +1,1 @@
-javadoc -d javadoc *.java
-pause
+javadoc -sourcepath src -subpackages priv -d doc 

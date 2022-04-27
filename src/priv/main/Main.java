@@ -1,6 +1,6 @@
-package main;
+package priv.main;
 
-import db.DbUser;
+import priv.db.DbUser;
 
 public class Main {
 

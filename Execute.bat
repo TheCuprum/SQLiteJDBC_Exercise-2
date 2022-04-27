@@ -1,2 +1,1 @@
-java -cp "sqlite-jdbc-3.7.2.jar;." Main > output.txt
-pause
+java -cp "lib/*;bin" priv.main.Main > output.txt

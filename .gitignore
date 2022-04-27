@@ -1,5 +1,9 @@
-javadoc/
+doc/
 lib/
+bin/
 
 *.class
 output.txt
+
+query1.sql
+University.db
