@@ -21,12 +21,12 @@ public class JoinInfo {
     public String buildString(){
         StringBuilder builder = new StringBuilder();
         builder
-            .append(this.type.toString())
+            .append(this.type)
             .append(' ')
             .append(this.formName);
         if(type != JoinType.NATURAL && type != JoinType.CROSS){
             builder
-                .append(' ')
+                .append(" ON ")
                 .append(this.leftKey)
                 .append(" = ")
                 .append(this.rightKey);

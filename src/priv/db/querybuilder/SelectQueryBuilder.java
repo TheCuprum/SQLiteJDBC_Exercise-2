@@ -10,6 +10,7 @@ public class SelectQueryBuilder {
     private ArrayList<String> queryForm;
     private ArrayList<JoinInfo> joinForm = null;
     private SqlPredicateNode predicate = null;
+    private String groupKey = null;
     private String orderKey = null;
     private boolean orderAsc = true;
 
@@ -68,6 +69,11 @@ public class SelectQueryBuilder {
         return this;
     }
 
+    public SelectQueryBuilder groupBy(String key){
+        this.groupKey = key;
+        return this;
+    }
+
     public String buildQuery(){
         if (this.queryKeys == null || this.queryForm == null) 
             return "";
@@ -76,12 +82,16 @@ public class SelectQueryBuilder {
         if (distinct) 
             builder.append(" DISTINCT");
 
+        builder.append(' ');
         for (String key : this.queryKeys) 
-            builder.append(' ').append(key);
+            builder.append(key).append(',');
+        builder.deleteCharAt(builder.length() - 1);
 
-        builder.append(" FROM");
+        builder.append(" FROM ");
         for (String form : this.queryForm)
-            builder.append(' ').append(form);
+            builder.append(form).append(',');
+        builder.deleteCharAt(builder.length() - 1);
+
 
         if (this.joinForm != null)
             for (JoinInfo joinInfo : joinForm)
@@ -89,6 +99,9 @@ public class SelectQueryBuilder {
         
         if (this.predicate != null)
             builder.append(" WHERE ").append(this.predicate.buildPredicate());
+
+        if (this.groupKey != null)
+            builder.append(" GROUP BY ").append(this.groupKey);
 
         if (this.orderKey != null)
             builder.append(" ORDER BY ").append(this.orderKey)

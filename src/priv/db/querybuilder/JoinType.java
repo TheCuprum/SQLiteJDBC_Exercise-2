@@ -14,7 +14,8 @@ public enum JoinType {
         this.toStringName = name;
     }
 
-    public String toString(JoinType type){
+    @Override
+    public String toString(){
         return this.toStringName;
     }
 }

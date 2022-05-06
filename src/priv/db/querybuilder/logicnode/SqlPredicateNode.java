@@ -10,7 +10,7 @@ public abstract class SqlPredicateNode {
         AndNode node1 = new AndNode(
             new ComparisonNode("form1.key1", ComparisonOperator.GREATER_EQUAL, "form2.key2"),
             new OrNode(
-                new BetweenNode("1", "5"),
+                new BetweenNode("form2.key3","1", "5"),
                 new LikeNode("form1.somkey","val%"))
             );
         System.out.println(node1.buildPredicate());

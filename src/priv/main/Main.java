@@ -1,5 +1,9 @@
 package priv.main;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import priv.db.DbUser;
 
 public class Main {
@@ -44,18 +48,17 @@ public class Main {
         // to parameterise_3_a, but there is no need to use this code unless you want
         // to.
 
-        // BufferedReader brin = new BufferedReader(new InputStreamReader(System.in));
-        // System.out.print("type in surname of lecturer: ");
-        // try {
-        // lecName = brin.readLine();
-        // } catch (IOException e) {
-        // System.out.println("Main.go() : Failure in I/O" + e);
-        // }
-        // ;
+        BufferedReader brin = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("type in surname of lecturer: ");
+        try {
+            lecName = brin.readLine();
+        } catch (IOException e) {
+            System.out.println("Main.go() : Failure in I/O" + e);
+        }
 
-        // parameterise_3_a(lecName);
+        myDbUser.parameterise_3_a(lecName);
 
-        // myDbUser.close();
+        myDbUser.close();
     }; // end of method "go"
 
     public static void main(String[] args) {
