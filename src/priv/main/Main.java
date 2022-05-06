@@ -9,7 +9,7 @@ public class Main {
     private void go() {
         String lecName = null;
         System.out.println("In go...");
-        myDbUser = new DbUser("University.db");
+        this.myDbUser = new DbUser("University.db");
         myDbUser.doQuery_1_a();
         myDbUser.doQuery_1_b();
 

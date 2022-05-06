@@ -7,7 +7,7 @@ public class DbBasic {
     /**
      * Set to true to enable debug messages
      */
-    boolean debug = false;
+    boolean debug = true;
 
     /**
      * Name of database driver

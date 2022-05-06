@@ -3,6 +3,10 @@ package priv.db;
 // STUBBED FILE
 import java.sql.*;
 
+import priv.db.querybuilder.SelectQueryBuilder;
+import priv.db.querybuilder.logicnode.ComparisonNode;
+import priv.db.querybuilder.logicnode.ComparisonOperator;
+
 // this is the class through which all Database calls go
 public class DbUser extends DbBasic {
 
@@ -48,6 +52,31 @@ public class DbUser extends DbBasic {
         // 1a).
         // See the example output to see what should be produced.
         System.out.println("1 a) what is the title of the course with code 361?");
+        SelectQueryBuilder sQueryBuilder = new SelectQueryBuilder();
+        sQueryBuilder.select("*").from("courses")
+            .where(new ComparisonNode("code", ComparisonOperator.EQUAL, "361"));
+        // System.out.println(sQueryBuilder.buildQuery());
+        try {
+            Statement statement = this.con.createStatement();
+            ResultSet result = statement.executeQuery(sQueryBuilder.buildQuery());
+            ResultSetMetaData meta = result.getMetaData();
+            for (int index = 1; index <= meta.getColumnCount(); index++){
+                System.out.print(pad(meta.getColumnName(index)));
+                System.out.print("| ");
+            }
+            System.out.println();
+            while(result.next()){
+                for (int index = 1; index <= meta.getColumnCount(); index++){
+                    System.out.print(pad(result.getString(index)));
+                    System.out.print("| ");
+                }
+                System.out.println();
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
     }
 
     public void doQuery_1_b() {
