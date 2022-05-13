@@ -1,5 +1,8 @@
 package priv.db.querybuilder.logicnode;
 
+/**
+ * Subclass of SqlPredicateNode that repersents AND logic.
+ */
 public class AndNode extends SqlPredicateNode{
     SqlPredicateNode leftVal;
     SqlPredicateNode rightVal;

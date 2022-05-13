@@ -1,5 +1,8 @@
 package priv.db.querybuilder.logicnode;
 
+/**
+ * Subclass of SqlPredicateNode that repersents comparison.
+ */
 public class ComparisonNode extends SqlPredicateNode{
     ComparisonOperator operator;
 

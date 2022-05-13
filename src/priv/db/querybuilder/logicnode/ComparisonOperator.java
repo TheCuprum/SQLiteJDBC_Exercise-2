@@ -1,5 +1,8 @@
 package priv.db.querybuilder.logicnode;
 
+/**
+ * The class represents different types of comparison operator.
+ */
 public enum ComparisonOperator {
     EQUAL("="),
     NOT_EQUAL("<>"),

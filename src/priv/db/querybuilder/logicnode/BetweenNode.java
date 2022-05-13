@@ -1,5 +1,8 @@
 package priv.db.querybuilder.logicnode;
 
+/**
+ * Subclass of SqlPredicateNode that repersents BETWEEN logic.
+ */
 public class BetweenNode extends SqlPredicateNode{
 
     String key;

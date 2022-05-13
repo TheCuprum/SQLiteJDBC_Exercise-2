@@ -1,5 +1,8 @@
 package priv.db.querybuilder.logicnode;
 
+/**
+ * Subclass of SqlPredicateNode that repersents LIKE logic.
+ */
 public class LikeNode extends SqlPredicateNode{
     public LikeNode(String key, String pattern){
         if (pattern == null)

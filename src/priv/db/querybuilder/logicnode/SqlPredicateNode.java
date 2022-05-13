@@ -1,5 +1,8 @@
 package priv.db.querybuilder.logicnode;
 
+/**
+ * Base class of all predicate nodes that represents a WHERE codition.
+ */
 public abstract class SqlPredicateNode {
     protected String leftVal = null;
     protected String rightVal = null;

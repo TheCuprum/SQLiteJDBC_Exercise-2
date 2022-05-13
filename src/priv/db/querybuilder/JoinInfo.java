@@ -1,5 +1,8 @@
 package priv.db.querybuilder;
 
+/**
+ * The class that contains te information for a JOIN statement.
+ */
 public class JoinInfo {
     JoinType type;
     String formName;
@@ -18,6 +21,10 @@ public class JoinInfo {
         }
     }
 
+    /**
+     * Builds JOIN statement according to iinformation contained in this instance.
+     * @return String-repersented JOIN statement.
+     */
     public String buildString(){
         StringBuilder builder = new StringBuilder();
         builder

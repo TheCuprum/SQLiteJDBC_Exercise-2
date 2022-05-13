@@ -1,5 +1,8 @@
 package priv.db.querybuilder.logicnode;
 
+/**
+ * Subclass of SqlPredicateNode that repersents OR logic.
+ */
 public class OrNode extends SqlPredicateNode{
     SqlPredicateNode leftVal;
     SqlPredicateNode rightVal;
