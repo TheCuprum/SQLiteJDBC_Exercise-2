@@ -39,27 +39,44 @@ public class DbUser extends DbBasic {
         return new String(new_bytes);
     }
 
-    private boolean queryAndPrint(String sql){
+    /**
+     * Prints out the result in {@link #rs}.
+     */
+    public void printResultSet(){
         try {
-            Statement statement = this.con.createStatement();
-            ResultSet result = statement.executeQuery(sql);
-            ResultSetMetaData meta = result.getMetaData();
-            for (int index = 1; index <= meta.getColumnCount(); index++){
-                System.out.print(pad(meta.getColumnName(index)));
-                System.out.print("| ");
+            ResultSetMetaData rsMeta = rs.getMetaData();
+            for (int index = 1; index <= rsMeta.getColumnCount(); index++){
+                System.out.print(pad(rsMeta.getColumnName(index)).concat("|"));
             }
             System.out.println();
             int rows = 0;
-            while(result.next()){
-                rows++;
-                for (int index = 1; index <= meta.getColumnCount(); index++){
-                    System.out.print(pad(result.getString(index)));
-                    System.out.print("| ");
+            while(rs.next()){
+                for (int index = 1; index <= rsMeta.getColumnCount(); index++){
+                    System.out.print(pad(rs.getString(index)).concat("|"));
                 }
                 System.out.println();
+                rows++;
             }
             System.out.println(rows + " row(s) in set");
             System.out.println();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Does SQL query and prints out result.
+     * @param sql The SQL statement.
+     * @return True if the query successes, false if an exception occurs.
+     */
+    private boolean queryAndPrint(String sql){
+        try {
+            this.rs = null;
+            Statement statement = this.con.createStatement();
+            System.out.println("SQL: ".concat(sql));
+            this.rs = statement.executeQuery(sql);
+            
+            this.printResultSet();
             statement.close();
             return true;
         } catch (SQLException e) {
@@ -68,9 +85,16 @@ public class DbUser extends DbBasic {
         }
     }
 
+    /**
+     * Does SQL query and doesn't print out result.
+     * @param sql The SQL statement.
+     * @return True if the query successes, false if an exception occurs.
+     */
     public boolean query(String sql){
         try {
+            this.rs = null;
             Statement statement = this.con.createStatement();
+            statement.execute(sql);
             
             System.out.println("NO RESULT");
             System.out.println();
